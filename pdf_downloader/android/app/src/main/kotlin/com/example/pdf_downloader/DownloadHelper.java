@@ -8,9 +8,11 @@ import android.os.Environment;
 
 public class DownloadHelper {
     public static void downloadPDF(Context context, String title, String pdfUrl) {
+        String appName = context.getApplicationInfo().loadLabel(context.getPackageManager()).toString();
+
         try {
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(pdfUrl));
-            request.setDescription("MyApp");
+            request.setDescription(appName);
             request.setTitle(title);
             // in order for this if to run, you must use the android 3.2 to compile your app
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
